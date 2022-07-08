@@ -1,0 +1,36 @@
+import classNames from 'classnames/bind';
+import { TimerIcon } from '~/icons';
+import styles from './Trending.module.scss';
+
+const cx = classNames.bind(styles);
+
+function Trending() {
+    return (
+        <div className={cx('wrapper')}>
+            <div className={cx('header')}>
+                <h3 className={cx('title')}>Trending</h3>
+                <span className={cx('more')}>See all</span>
+            </div>
+            <img className={cx('image')} alt="title" src={require('~/assets/trending/trending-1.jpg')} />
+            <span className={cx('image-title')}>Europe</span>
+            <h4 className={cx('title-news')}>Russian warship: Moskva sinks in</h4>
+            <div className={cx('infor')}>
+                <div className={cx('wrapper-infor')}>
+                    <span className={cx('title-infor')}>
+                        <img className={cx('image-infor')} alt="image-infor" src={require('~/assets/bbc-logo.jpg')} />
+                        BBC News
+                    </span>
+                    <span className={cx('time-infor')}>
+                        <span className={cx('timer-icon')}>
+                            <TimerIcon />
+                        </span>
+                        4h ago
+                    </span>
+                </div>
+                <span className={cx('more-infor')}>...</span>
+            </div>
+        </div>
+    );
+}
+
+export default Trending;

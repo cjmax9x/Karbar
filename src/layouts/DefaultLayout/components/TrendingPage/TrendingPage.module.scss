@@ -1,0 +1,61 @@
+.image {
+    width: 100%;
+    border-radius: 10px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+.title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #000000;
+}
+.more {
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--body-text);
+}
+.image-title {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--body-text);
+}
+.title-news {
+    line-height: 2.4rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin: 10px 0 4px;
+    color: #000000;
+}
+.image-infor {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.wrapper-infor {
+    display: flex;
+    align-items: center;
+}
+.title-infor {
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+}
+.timer-icon {
+    margin-right: 6px;
+}
+.infor {
+    display: flex;
+    justify-content: space-between;
+}
+.time-infor {
+    font-size: 1.3rem;
+    font-weight: 400;
+}
