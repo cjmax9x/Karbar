@@ -1,11 +1,12 @@
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 import { BackIcon, MoreIcon } from '~/icons';
 import TrendingLand from '~/layouts/DefaultLayout/components/TrendingLand';
 import styles from './TrendingPage.module.scss';
 
 const cx = classNames.bind(styles);
 
-function TrendingPage({ className, onClick }) {
+function TrendingPage() {
     const dataLocal = [
         {
             aria: 'Europe',
@@ -30,14 +31,16 @@ function TrendingPage({ className, onClick }) {
         },
     ];
     return (
-        <div className={className}>
+        <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <BackIcon onClick={onClick} />
+                <Link to="/home">
+                    <BackIcon />
+                </Link>
                 <h3 className={cx('title')}>Trending</h3>
                 <MoreIcon />
             </div>
             {dataLocal.map((item, index) => (
-                <TrendingLand key={index} data={item} onClick={onClick} />
+                <TrendingLand key={index} data={item} />
             ))}
         </div>
     );

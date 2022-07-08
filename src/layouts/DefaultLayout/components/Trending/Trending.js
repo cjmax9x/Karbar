@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 import { TimerIcon } from '~/icons';
 import styles from './Trending.module.scss';
 
@@ -9,7 +10,9 @@ function Trending() {
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <h3 className={cx('title')}>Trending</h3>
-                <span className={cx('more')}>See all</span>
+                <Link to="/home/trending" className={cx('more')}>
+                    See all
+                </Link>
             </div>
             <img className={cx('image')} alt="title" src={require('~/assets/trending/trending-1.jpg')} />
             <span className={cx('image-title')}>Europe</span>

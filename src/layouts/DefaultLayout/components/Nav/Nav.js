@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 function Nav() {
     return (
         <div className={cx('wrapper')}>
-            <NavItem icon={<Home />} title="Home" to="/" />
+            <NavItem icon={<Home />} title="Home" to="/home" />
             <NavItem icon={<Explore />} title="Explore" to="/explore" />
             <NavItem icon={<Bookmark />} title="Bookmark" to="/bookmark" />
             <NavItem icon={<Profile />} title="Profile" to="/profile" />
