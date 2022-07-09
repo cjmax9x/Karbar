@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { BackIcon, MoreIcon } from '~/icons';
-import TrendingLand from '~/layouts/DefaultLayout/components/TrendingLand';
+import TrendingLand from '~/components/TrendingLand';
 import styles from './TrendingPage.module.scss';
 
 const cx = classNames.bind(styles);

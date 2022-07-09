@@ -2,9 +2,9 @@ import Home from '~/Pages/Home';
 import Explore from '~/Pages/Explore';
 import Bookmark from '~/Pages/Bookmark';
 import Profile from '~/Pages/Profile';
-import TrendingPage from '~/layouts/DefaultLayout/components/TrendingPage';
-import NavOnly from '~/layouts/DefaultLayout/NavOnly';
-import Notifi from '~/layouts/DefaultLayout/components/Notifi';
+import TrendingPage from '~/components/TrendingPage';
+import NavOnly from '~/layouts/NavOnly';
+import Notifi from '~/components/Notifi';
 
 const publicRoutes = [
     { path: '/home', component: <Home /> },

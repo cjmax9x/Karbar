@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { TimerIcon } from '~/icons';
+import News from '../News';
 import styles from './LastestNews.module.scss';
 
 const cx = classNames.bind(styles);
@@ -137,7 +138,7 @@ function LastestNews() {
     ];
     const [data, setData] = useState(dataLocal);
     useEffect(() => {
-        const liElement = document.querySelectorAll('li');
+        const liElement = document.querySelectorAll('[name="lastest"]');
         liElement[0].classList.add(cx('active'));
         liElement.forEach((item) => {
             item.onclick = () => {
@@ -171,32 +172,13 @@ function LastestNews() {
             </div>
             <ul className={cx('list-item')}>
                 {list.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li name="lastest" key={index}>
+                        {item}
+                    </li>
                 ))}
             </ul>
             {data.map((item, index) => (
-                <div key={index} className={cx('content')}>
-                    <img alt="image" className={cx('image')} src={item.imageContent} />
-                    <div className={cx('body-content')}>
-                        <span className={cx('image-title')}>{item.aria}</span>
-                        <h4 className={cx('title-news')}>{item.content}</h4>
-                        <div className={cx('infor')}>
-                            <div className={cx('wrapper-infor')}>
-                                <span className={cx('title-infor')}>
-                                    <img className={cx('image-infor')} alt="image-infor" src={item.logo} />
-                                    {item.local}
-                                </span>
-                                <span className={cx('time-infor')}>
-                                    <span className={cx('timer-icon')}>
-                                        <TimerIcon />
-                                    </span>
-                                    14m ago
-                                </span>
-                            </div>
-                            <span className={cx('more-infor')}>...</span>
-                        </div>
-                    </div>
-                </div>
+                <News key={index} item={item} />
             ))}
         </div>
     );

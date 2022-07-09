@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { BackIcon, MoreIcon, TimerIcon } from '~/icons';
+import { TimerIcon } from '~/icons';
 import styles from './TrendingLand.module.scss';
 
 const cx = classNames.bind(styles);

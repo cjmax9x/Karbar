@@ -37,10 +37,3 @@ a {
     color: var(--body-text);
     text-decoration: none;
 }
-#tippy-2 {
-    z-index: 9999 !important;
-    position: absolute !important;
-    inset: 0 0 -1240% 0 !important;
-    background-color: var(--primary);
-    transform: translate(0) !important;
-}

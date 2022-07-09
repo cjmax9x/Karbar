@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import Nav from '../components/Nav/Nav';
+import Nav from '~/components/Nav/Nav';
 import styles from './NavOnly.module.scss';
 
 const cx = classNames.bind(styles);

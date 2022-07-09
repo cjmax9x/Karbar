@@ -19,6 +19,15 @@
     font-weight: 400;
     font-size: 14px;
 }
+.icon-active {
+    display: none;
+}
 .active {
     color: var(--primary);
+    .icon-active {
+        display: block;
+    }
+    .icon {
+        display: none;
+    }
 }
