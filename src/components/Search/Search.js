@@ -4,14 +4,14 @@ import { FilterIcon, SearchIcon } from '~/icons';
 import styles from './Search.module.scss';
 import SearchItem from './SearchItem';
 import { useState } from 'react';
-import News from '../News';
+import NotifiItem from '~/components/Notifi/NotifiContent/NotifiItem';
+import NewsSearch from '~/components/NewsSearch/NewsSearch';
 
 const cx = classNames.bind(styles);
 
 function Search() {
     const dataLocal = ['News', 'Topics', 'Author'];
-    const [showTippy, setShowTippy] = useState(false);
-    const dataLocalSearch = [
+    const dataLocalNews = [
         {
             aria: 'Europe',
             content: "Ukraine's President Zelensky to BBC: Blood money being paid...",
@@ -139,14 +139,66 @@ function Search() {
             local: 'BBC News',
         },
     ];
+    const dataLocalTopics = [
+        {
+            logo: require('~/assets/notifi/notifi-1.jpg'),
+            title: 'BBC News',
+            content: "has posted new europe news “Ukraine's President Zele...”",
+            time: '15m ago',
+        },
+        {
+            logo: require('~/assets/notifi/notifi-2.jpg'),
+            title: 'Modelyn Saris',
+            content: 'is now following you',
+            time: '1h ago',
+            follow: true,
+        },
+        {
+            logo: require('~/assets/notifi/notifi-3.jpg'),
+            title: 'Omar Merditz',
+            content: 'comment to your news “Minting Your First NFT: A... “',
+            time: '1h ago',
+        },
+        {
+            logo: require('~/assets/notifi/notifi-4.jpg'),
+            title: 'Marley Botosh',
+            content: 'is now following you',
+            time: '1 Day ago',
+            follow: true,
+        },
+        {
+            logo: require('~/assets/notifi/notifi-2.jpg'),
+            title: 'Modelyn Saris',
+            content: 'likes your news “Minting Your First NFT: A... “',
+            time: '1 Day ago',
+        },
+        {
+            logo: require('~/assets/notifi/notifi-5.jpg'),
+            title: 'CNN',
+            content: 'has posted new travel news “Her train broke down. Her pho...”',
+            time: '1 Day ago',
+        },
+    ];
+    const [showTippy, setShowTippy] = useState(false);
+    const [showNews, setShowNews] = useState(true);
+    const [showTopics, setShowTopics] = useState(false);
+    const [data, setData] = useState(dataLocalNews);
+    const handleDataChangeNews = () => {
+        setData(dataLocalNews);
+        setShowNews(true);
+        setShowTopics(false);
+    };
+
+    const handleDataChangeTopics = () => {
+        setData(dataLocalTopics);
+        setShowNews(false);
+        setShowTopics(true);
+    };
     return (
         <div className={cx('wrapper')}>
             <Tippy
-                getReferenceClientRect={() => ({
-                    top: 100,
-                    height: 60,
-                })}
-                placement="bottom-end"
+                getReferenceClientRect={null}
+                placement="bottom"
                 visible={showTippy}
                 onClickOutside={() => {
                     setShowTippy(false);
@@ -155,15 +207,24 @@ function Search() {
                 render={(attrs) => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <div className={cx('search-type')}>
-                            <SearchItem change={showTippy} className={cx('type')} data={dataLocal} />
+                            <SearchItem
+                                onClickTopics={handleDataChangeTopics}
+                                onClickNews={handleDataChangeNews}
+                                change={showTippy}
+                                className={cx('type')}
+                                data={dataLocal}
+                            />
                         </div>
-                        {dataLocalSearch.map((item, index) => (
-                            <News key={index} item={item} />
+                        {data.map((item, index) => (
+                            <div key={index}>
+                                {showNews && <NewsSearch key={index} item={item} />}
+                                {showTopics && <NotifiItem key={index} data={item} />}
+                            </div>
                         ))}
                     </div>
                 )}
             >
-                <div>
+                <div className={cx('search-input')}>
                     <input
                         onClick={() => {
                             setShowTippy(true);

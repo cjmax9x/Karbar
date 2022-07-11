@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { BackIcon, MoreIcon } from '~/icons';
 import TrendingLand from '~/components/TrendingLand';
 import styles from './TrendingPage.module.scss';
+import { useState } from 'react';
+import ContentTrending from '~/components/ContentTrending/ContentTrending';
 
 const cx = classNames.bind(styles);
 
@@ -30,18 +32,37 @@ function TrendingPage() {
             local: 'BBC News',
         },
     ];
+    const [content, setContent] = useState(dataLocal);
+    const [showContent, setShowContent] = useState(false);
+    const handleOnBack = () => {
+        setShowContent(false);
+        setContent(dataLocal);
+    };
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('header')}>
-                <Link to="/home">
-                    <BackIcon />
-                </Link>
-                <h3 className={cx('title')}>Trending</h3>
-                <MoreIcon />
-            </div>
-            {dataLocal.map((item, index) => (
-                <TrendingLand key={index} data={item} />
-            ))}
+            {!showContent && (
+                <div className={cx('header')}>
+                    <Link to="/home">
+                        <BackIcon />
+                    </Link>
+                    <h3 className={cx('title')}>Trending</h3>
+                    <MoreIcon />
+                </div>
+            )}
+
+            {!showContent &&
+                content.map((item, index) => (
+                    <TrendingLand
+                        onClick={() => {
+                            setShowContent(true);
+                            setContent([dataLocal[index]]);
+                        }}
+                        key={index}
+                        data={item}
+                    />
+                ))}
+            {showContent &&
+                content.map((item, index) => <ContentTrending onClick={handleOnBack} key={index} data={item} />)}
         </div>
     );
 }

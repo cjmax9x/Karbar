@@ -1,31 +1,15 @@
-.wrapper {
-    width: 100%;
-    height: 804px;
-    overflow-y: auto;
-    &::-webkit-scrollbar {
-        display: none;
-    }
+.content {
+    display: flex;
+    margin: 10px 0;
+    cursor: pointer;
 }
 .image {
-    width: 100%;
-    border-radius: 10px;
+    widows: 96px;
+    height: 96px;
+    border-radius: 8px;
 }
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-}
-.title {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #000000;
-}
-.more {
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: var(--body-text);
+.body-content {
+    padding: 0 10px;
 }
 .image-title {
     font-size: 1.3rem;
@@ -36,7 +20,6 @@
     line-height: 2.4rem;
     font-size: 1.6rem;
     font-weight: 400;
-    margin: 10px 0 4px;
     color: #000000;
 }
 .image-infor {

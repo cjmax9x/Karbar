@@ -1,5 +1,8 @@
 .wrapper {
     width: 100%;
+    z-index: 9999;
+}
+.search-input {
     position: relative;
 }
 .input {
@@ -26,17 +29,21 @@
     transform: translateY(-40%);
 }
 .search-result {
+    z-index: 999;
     overflow-y: auto;
     width: 380px;
-    height: 624px;
+    height: 670px;
     padding: 24px 0;
-    background-color: rgba(114, 114, 114, 1);
     background-color: white;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 .search-type {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .type {

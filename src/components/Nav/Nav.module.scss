@@ -1,33 +1,36 @@
 .wrapper {
-    position: sticky;
-    top: 882px;
-    width: 100%;
-    display: flex;
-    height: 78px;
-    justify-content: space-between;
+  position: absolute;
+  top: 804px;
+  width: 100%;
+  display: flex;
+  height: 78px;
+  padding: 0 24px;
+  justify-content: space-between;
+  background-color: white;
+  align-items: center;
 }
 .item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 70px;
-    height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
 }
 
 .title {
-    font-weight: 400;
-    font-size: 14px;
+  font-weight: 400;
+  font-size: 14px;
 }
 .icon-active {
-    display: none;
+  display: none;
 }
 .active {
-    color: var(--primary);
-    .icon-active {
-        display: block;
-    }
-    .icon {
-        display: none;
-    }
+  color: var(--primary);
+  .icon-active {
+    display: block;
+  }
+  .icon {
+    display: none;
+  }
 }

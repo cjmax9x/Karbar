@@ -4,7 +4,7 @@ import styles from '~/components/Search/Search.module.scss';
 
 const cx = classNames.bind(styles);
 
-function SearchItem({ data, className, change }) {
+function SearchItem({ data, className, change, onClickNews, onClickTopics }) {
     useEffect(() => {
         const typeElement = document.querySelectorAll(`.${className}`);
         if (typeElement.length > 0) {
@@ -16,6 +16,17 @@ function SearchItem({ data, className, change }) {
                     item.classList.remove(cx('active'));
                 });
                 items.classList.add(cx('active'));
+                switch (items.innerText) {
+                    case 'Topics':
+                        onClickTopics();
+                        break;
+                    case 'News':
+                        onClickNews();
+                        break;
+                    case 'Author':
+                        onClickNews();
+                        break;
+                }
             };
         });
         return () => {
