@@ -9,7 +9,7 @@ import NewsSearch from '~/components/NewsSearch/NewsSearch';
 
 const cx = classNames.bind(styles);
 
-function Search() {
+function Search({ className }) {
     const dataLocal = ['News', 'Topics', 'Author'];
     const dataLocalNews = [
         {
@@ -205,7 +205,7 @@ function Search() {
                 }}
                 interactive
                 render={(attrs) => (
-                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                    <div className={cx('search-result', className)} tabIndex="-1" {...attrs}>
                         <div className={cx('search-type')}>
                             <SearchItem
                                 onClickTopics={handleDataChangeTopics}

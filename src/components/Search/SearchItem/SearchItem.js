@@ -26,6 +26,8 @@ function SearchItem({ data, className, change, onClickNews, onClickTopics }) {
                     case 'Author':
                         onClickNews();
                         break;
+                    default:
+                        throw new Error('Invalid selection');
                 }
             };
         });

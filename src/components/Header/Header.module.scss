@@ -1,7 +1,6 @@
 .wrapper {
     z-index: 2;
     position: sticky;
-    top: 1%;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -9,6 +8,7 @@
     height: 56px;
     margin-bottom: 20px;
     flex-shrink: 0;
+    background-color: #fff;
 }
 .logo {
     color: var(--primary);

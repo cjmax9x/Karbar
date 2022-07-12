@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Content from '~/components/Content';
 import News from '~/components/News';
 import Search from '~/components/Search';
@@ -23,27 +23,7 @@ function Home() {
             logo: require('~/assets/bbc-logo.jpg'),
             local: 'BBC News',
         },
-        {
-            aria: 'Travel',
-            content: 'Her train broke down. Her phone died. And then she met her..',
-            imageContent: require('~/assets/content/content-2.jpg'),
-            logo: require('~/assets/bbc-logo.jpg'),
-            local: 'BBC News',
-        },
-        {
-            aria: 'Travel',
-            content: 'Her train broke down. Her phone died. And then she met her..',
-            imageContent: require('~/assets/content/content-2.jpg'),
-            logo: require('~/assets/bbc-logo.jpg'),
-            local: 'BBC News',
-        },
-        {
-            aria: 'Travel',
-            content: 'Her train broke down. Her phone died. And then she met her..',
-            imageContent: require('~/assets/content/content-2.jpg'),
-            logo: require('~/assets/bbc-logo.jpg'),
-            local: 'BBC News',
-        },
+
         {
             aria: 'Europe',
             content: 'Russian warship: Moskva sinks in Black Sea',
@@ -58,82 +38,13 @@ function Home() {
             logo: require('~/assets/usa-logo.jpg'),
             local: 'USE Today',
         },
-        {
-            aria: 'Money',
-            content: 'Wind power produced more electricity than coal and nucle...',
-            imageContent: require('~/assets/content/content-4.jpg'),
-            logo: require('~/assets/usa-logo.jpg'),
-            local: 'USE Today',
-        },
-        {
-            aria: 'Money',
-            content: 'Wind power produced more electricity than coal and nucle...',
-            imageContent: require('~/assets/content/content-4.jpg'),
-            logo: require('~/assets/usa-logo.jpg'),
-            local: 'USE Today',
-        },
-        {
-            aria: 'Money',
-            content: 'Wind power produced more electricity than coal and nucle...',
-            imageContent: require('~/assets/content/content-4.jpg'),
-            logo: require('~/assets/usa-logo.jpg'),
-            local: 'USE Today',
-        },
+
         {
             aria: 'Life',
             content: "'We keep rising to new challenges:' For churches hit by",
             imageContent: require('~/assets/content/content-5.jpg'),
             logo: require('~/assets/usa-logo.jpg'),
             local: 'USE Today',
-        },
-        {
-            aria: 'Life',
-            content: "'We keep rising to new challenges:' For churches hit by",
-            imageContent: require('~/assets/content/content-5.jpg'),
-            logo: require('~/assets/usa-logo.jpg'),
-            local: 'USE Today',
-        },
-        {
-            aria: 'Life',
-            content: "'We keep rising to new challenges:' For churches hit by",
-            imageContent: require('~/assets/content/content-5.jpg'),
-            logo: require('~/assets/usa-logo.jpg'),
-            local: 'USE Today',
-        },
-        {
-            aria: 'Life',
-            content: "'We keep rising to new challenges:' For churches hit by",
-            imageContent: require('~/assets/content/content-5.jpg'),
-            logo: require('~/assets/usa-logo.jpg'),
-            local: 'USE Today',
-        },
-        {
-            aria: 'Europe',
-            content: 'Russian warship: Moskva sinks in Black Sea',
-            imageContent: require('~/assets/content/content-3.jpg'),
-            logo: require('~/assets/bbc-logo.jpg'),
-            local: 'BBC News',
-        },
-        {
-            aria: 'Europe',
-            content: 'Russian warship: Moskva sinks in Black Sea',
-            imageContent: require('~/assets/content/content-3.jpg'),
-            logo: require('~/assets/bbc-logo.jpg'),
-            local: 'BBC News',
-        },
-        {
-            aria: 'Europe',
-            content: 'Russian warship: Moskva sinks in Black Sea',
-            imageContent: require('~/assets/content/content-3.jpg'),
-            logo: require('~/assets/bbc-logo.jpg'),
-            local: 'BBC News',
-        },
-        {
-            aria: 'Europe',
-            content: 'Russian warship: Moskva sinks in Black Sea',
-            imageContent: require('~/assets/content/content-3.jpg'),
-            logo: require('~/assets/bbc-logo.jpg'),
-            local: 'BBC News',
         },
     ];
 
@@ -152,6 +63,8 @@ function Home() {
         setShowContent(true);
     };
     const handleoOnBack = () => {
+        setContentData(dataLocal1);
+
         setShowContent(false);
     };
     const handleSearchContent = (index) => {
@@ -159,8 +72,8 @@ function Home() {
         handleContent();
     };
     useEffect(() => {
-        if (document.querySelector('[name="lastest"]')) {
-            const liElement = document.querySelectorAll('[name="lastest"]');
+        if (ref.current) {
+            const liElement = Array.from(ref.current.children);
             liElement[0].classList.add(cx('active'));
             liElement.forEach((item) => {
                 item.onclick = () => {
@@ -183,6 +96,8 @@ function Home() {
                         case 'Health':
                             setData(dataLocal.filter((item) => item.aria === 'Travel'));
                             break;
+                        default:
+                            throw new Error('Invalid selection');
                     }
                     liElement.forEach((item) => {
                         if (item.classList.contains(cx('active'))) {
@@ -194,6 +109,7 @@ function Home() {
             });
         }
     }, [showContent]);
+    const ref = useRef();
     return (
         <div className={cx('wrapper')}>
             {!showContent && (
@@ -207,11 +123,9 @@ function Home() {
                                 <span className={cx('more')}>See all</span>
                             </div>
                         </div>
-                        <ul className={cx('list-item')}>
+                        <ul ref={ref} className={cx('list-item')}>
                             {list.map((item, index) => (
-                                <li name="lastest" key={index}>
-                                    {item}
-                                </li>
+                                <li key={index}>{item}</li>
                             ))}
                         </ul>
                         {data.map((item, index) => (
@@ -220,7 +134,7 @@ function Home() {
                                     handleSearchContent(index);
                                 }}
                                 key={index}
-                                item={item}
+                                data={item}
                             />
                         ))}
                     </div>

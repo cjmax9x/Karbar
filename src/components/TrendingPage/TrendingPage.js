@@ -53,6 +53,7 @@ function TrendingPage() {
             {!showContent &&
                 content.map((item, index) => (
                     <TrendingLand
+                        context={true}
                         onClick={() => {
                             setShowContent(true);
                             setContent([dataLocal[index]]);

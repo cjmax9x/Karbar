@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import { TimerIcon } from '~/icons';
 import classNames from 'classnames/bind';
 import styles from './NewsSearch.module.scss';
