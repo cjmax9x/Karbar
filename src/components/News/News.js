@@ -8,12 +8,12 @@ import { ChangeLayout } from '~/layouts/DefaultLayout/DefaultLayout';
 
 const cx = classNames.bind(styles);
 
-function News({ data, onClick }) {
+function News({ data, onClick = () => {} }) {
     const value = useContext(ChangeLayout);
 
     const handle = () => {
         value && value.handleShow();
-        onClick && onClick();
+        onClick();
     };
     return (
         <div onClick={handle} className={cx('content')}>

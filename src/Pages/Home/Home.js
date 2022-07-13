@@ -1,18 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import classNames from 'classnames/bind';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Content from '~/components/Content';
-import News from '~/components/News';
+import LastNews from '~/components/LastNews/LastNews';
 import Search from '~/components/Search';
 import Trending from '~/components/Trending';
 import styles from './Home.module.scss';
 const cx = classNames.bind(styles);
 function Home() {
-    const list = ['All', 'Sports', 'Politics', 'Business', 'Health', 'Travel', 'Health', 'Health', 'Health', 'Health'];
     const dataLocal = [
         {
             aria: 'Europe',
             content: "Ukraine's President Zelensky to BBC: Blood money being paid...",
             imageContent: require('~/assets/content/content-1.jpg'),
+            imageTrending: require('~/assets/trending/trending-1.jpg'),
             logo: require('~/assets/bbc-logo.jpg'),
             local: 'BBC News',
         },
@@ -20,6 +21,7 @@ function Home() {
             aria: 'Travel',
             content: 'Her train broke down. Her phone died. And then she met her..',
             imageContent: require('~/assets/content/content-2.jpg'),
+            imageTrending: require('~/assets/trending/trending-2.jpg'),
             logo: require('~/assets/bbc-logo.jpg'),
             local: 'BBC News',
         },
@@ -28,6 +30,7 @@ function Home() {
             aria: 'Europe',
             content: 'Russian warship: Moskva sinks in Black Sea',
             imageContent: require('~/assets/content/content-3.jpg'),
+            imageTrending: require('~/assets/trending/trending-3.jpg'),
             logo: require('~/assets/bbc-logo.jpg'),
             local: 'BBC News',
         },
@@ -35,6 +38,7 @@ function Home() {
             aria: 'Money',
             content: 'Wind power produced more electricity than coal and nucle...',
             imageContent: require('~/assets/content/content-4.jpg'),
+            imageTrending: require('~/assets/trending/trending-3.jpg'),
             logo: require('~/assets/usa-logo.jpg'),
             local: 'USE Today',
         },
@@ -43,104 +47,32 @@ function Home() {
             aria: 'Life',
             content: "'We keep rising to new challenges:' For churches hit by",
             imageContent: require('~/assets/content/content-5.jpg'),
+            imageTrending: require('~/assets/trending/trending-3.jpg'),
             logo: require('~/assets/usa-logo.jpg'),
             local: 'USE Today',
         },
     ];
-
-    const dataLocal1 = {
-        aria: 'Europe',
-        content: 'Russian warship: Moskva sinks in',
-        imageContent: require('~/assets/trending/trending-1.jpg'),
-        logo: require('~/assets/bbc-logo.jpg'),
-        local: 'BBC News',
-    };
+    const [dataContent, setDataContent] = useState([]);
     const [showContent, setShowContent] = useState(false);
-    const [data, setData] = useState(dataLocal);
-    const [contentData, setContentData] = useState(dataLocal1);
-
-    const handleContent = () => {
+    const handleShowContent = (index) => {
         setShowContent(true);
+        setDataContent(dataLocal[index]);
     };
-    const handleoOnBack = () => {
-        setContentData(dataLocal1);
-
+    const handleHideContent = () => {
         setShowContent(false);
+        setDataContent([]);
     };
-    const handleSearchContent = (index) => {
-        setContentData(data[index]);
-        handleContent();
-    };
-    useEffect(() => {
-        if (ref.current) {
-            const liElement = Array.from(ref.current.children);
-            liElement[0].classList.add(cx('active'));
-            liElement.forEach((item) => {
-                item.onclick = () => {
-                    switch (item.innerText) {
-                        case 'All':
-                            setData(dataLocal);
-                            break;
-                        case 'Sports':
-                            setData(dataLocal.filter((item) => item.aria === 'Europe'));
-                            break;
-
-                        case 'Politics':
-                            setData(dataLocal.filter((item) => item.aria === 'Life'));
-                            break;
-
-                        case 'Business':
-                            setData(dataLocal.filter((item) => item.aria === 'Money'));
-                            break;
-
-                        case 'Health':
-                            setData(dataLocal.filter((item) => item.aria === 'Travel'));
-                            break;
-                        default:
-                            throw new Error('Invalid selection');
-                    }
-                    liElement.forEach((item) => {
-                        if (item.classList.contains(cx('active'))) {
-                            item.classList.remove(cx('active'));
-                        }
-                    });
-                    item.classList.add(cx('active'));
-                };
-            });
-        }
-    }, [showContent]);
-    const ref = useRef();
     return (
         <div className={cx('wrapper')}>
             {!showContent && (
                 <>
                     <Search />
-                    <Trending onClick={handleContent} />
-                    <div className={cx('wrapper-Lastest')}>
-                        <div className={cx('wrapper-selection')}>
-                            <div className={cx('header')}>
-                                <h3 className={cx('title')}>Latest</h3>
-                                <span className={cx('more')}>See all</span>
-                            </div>
-                        </div>
-                        <ul ref={ref} className={cx('list-item')}>
-                            {list.map((item, index) => (
-                                <li key={index}>{item}</li>
-                            ))}
-                        </ul>
-                        {data.map((item, index) => (
-                            <News
-                                onClick={() => {
-                                    handleSearchContent(index);
-                                }}
-                                key={index}
-                                data={item}
-                            />
-                        ))}
-                    </div>
+                    <Trending onClick={handleShowContent} data={dataLocal} />
+                    <LastNews onClick={handleShowContent} data={dataLocal} />
                 </>
             )}
-            {showContent && <Content onClick={handleoOnBack} data={contentData} />}
+
+            {showContent && <Content onClick={handleHideContent} data={dataContent} />}
         </div>
     );
 }

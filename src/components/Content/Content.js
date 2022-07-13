@@ -6,7 +6,7 @@ import { ChangeLayout } from '~/layouts/DefaultLayout/DefaultLayout';
 
 import styles from './Content.module.scss';
 const cx = classNames.bind(styles);
-function Content({ data, onClick }) {
+function Content({ data, onClick = () => {} }) {
     let value = useContext(ChangeLayout);
     const handle = () => {
         onClick && onClick();
