@@ -7,7 +7,7 @@ import { useContext, useEffect, useRef } from 'react';
 import { ChangeLayout } from '~/layouts/DefaultLayout/DefaultLayout';
 const cx = classNames.bind(styles);
 
-function Trending({ data, onClick = () => {} }, handle1 = () => {}) {
+function Trending({ data, onClick = () => {} }) {
     const value = useContext(ChangeLayout);
     const handle = (index) => {
         value && value.handleShow();
