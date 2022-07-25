@@ -1,0 +1,96 @@
+.wrapper {
+    width: 100%;
+    margin-top: 20px;
+    overflow-y: auto;
+}
+.header {
+    width: 100%;
+    position: relative;
+    text-align: right;
+    margin-bottom: 20px;
+}
+.title-header {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 400;
+    color: #000000;
+    font-size: 1.6rem;
+}
+.infor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.image-profile {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.follow {
+    text-align: center;
+}
+.number {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #000000;
+}
+.description-infor {
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: var(--body-text);
+}
+.description {
+    margin-bottom: 16px;
+}
+.title-description {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #000000;
+}
+.description-description {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--body-text);
+}
+.selection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.selection-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.selection-button {
+    width: 48%;
+    height: 50px;
+    border: 0;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 6px;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.selection-button-2 {
+    width: 56px;
+    padding-bottom: 6px;
+    & + & {
+        margin-left: 10px;
+    }
+    border: 0;
+    background-color: #fff;
+    color: var(--body-text);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+.active {
+    border-bottom: 4px solid var(--primary);
+}

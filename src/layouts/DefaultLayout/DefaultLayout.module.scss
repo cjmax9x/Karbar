@@ -1,0 +1,11 @@
+.wrapper {
+    width: 428px;
+    height: 882px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    padding: 0 24px;
+    background-color: var(--white);
+}
